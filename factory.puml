@@ -1,0 +1,37 @@
+@startuml
+title Factory Method: тип таможенной декларации
+
+interface Declaration {
+  +description() : String
+  +customsValue() : double
+}
+
+abstract class DeclarationCreator {
+  +{abstract} createDeclaration(customsValue) : Declaration
+}
+
+class ImportDeclaration
+class ExportDeclaration
+class TransitDeclaration
+class TemporaryAdmissionDeclaration
+
+class ImportDeclarationCreator
+class ExportDeclarationCreator
+class TransitDeclarationCreator
+class TemporaryAdmissionCreator
+
+Declaration <|.. ImportDeclaration
+Declaration <|.. ExportDeclaration
+Declaration <|.. TransitDeclaration
+Declaration <|.. TemporaryAdmissionDeclaration
+
+DeclarationCreator <|-- ImportDeclarationCreator
+DeclarationCreator <|-- ExportDeclarationCreator
+DeclarationCreator <|-- TransitDeclarationCreator
+DeclarationCreator <|-- TemporaryAdmissionCreator
+
+ImportDeclarationCreator ..> ImportDeclaration : создаёт
+ExportDeclarationCreator ..> ExportDeclaration : создаёт
+TransitDeclarationCreator ..> TransitDeclaration : создаёт
+TemporaryAdmissionCreator ..> TemporaryAdmissionDeclaration : создаёт
+@enduml

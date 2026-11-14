@@ -1,0 +1,24 @@
+@startuml
+title Observer: груз оформлен
+
+interface ClearanceListener {
+  +onCargoCleared(pointName, cargoNumber) : void
+}
+
+class CustomsPoint {
+  +addListener(listener)
+  +removeListener(listener)
+  +cargoCleared(cargoNumber)
+}
+
+class BoardDisplay
+class ClearanceJournal
+class NotificationMailing
+class AsuTransfer
+
+CustomsPoint o--> "0..*" ClearanceListener : оповещает
+ClearanceListener <|.. BoardDisplay
+ClearanceListener <|.. ClearanceJournal
+ClearanceListener <|.. NotificationMailing
+ClearanceListener <|.. AsuTransfer
+@enduml
